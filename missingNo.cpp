@@ -22,7 +22,7 @@ int findMissingNo(int arr[], int n)
     }
 }
 
-int findMissingNoHashh(int arr[], int n)
+/*int findMissingNoHashh(int arr[], int n)
 {
     int hashh[n + 1] = {0};
     // precompute
@@ -37,6 +37,33 @@ int findMissingNoHashh(int arr[], int n)
         if (hashh[i] == 0)
             return i;
     }
+}*/
+
+int findMissingNoOptUsingSum(int arr[], int n)
+{
+
+    int sum = n * (n + 1) / 2;
+    int sumArr = 0;
+    for (int i = 0; i < n - 1; i++)
+    {
+        sumArr += arr[i];
+    }
+    return (sum - sumArr);
+}
+
+int findMissingNoOptUsingXOR(int arr[], int n)
+{
+    int xor1 = 0;
+    int xor2 = 0;
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        xor2 = xor2 ^ arr[i];
+        xor1 = xor1 ^ (i + 1);
+    }
+    xor1 = xor1 ^ n;
+
+    return (xor1 ^ xor2);
 }
 
 int main()
@@ -54,7 +81,7 @@ int main()
     {
         cin >> arr[i];
     }
-    int num = findMissingNoHashh(arr, n);
+    int num = findMissingNoOptUsingXOR(arr, n);
 
     cout << num;
 
