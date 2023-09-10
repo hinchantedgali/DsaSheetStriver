@@ -46,6 +46,33 @@ int longestSubArrHashMap(int arr[], int n, long long k)
     return maxLen;
 }
 
+// 2 ptrs approach O(2N)
+// because the inner loop runs max N time wc scenario
+int longestSubArrOpt(int arr[], int n, int k)
+{
+    long long sum = arr[0];
+    int maxLen = 0;
+    int l = 0;
+    int r = 0;
+
+    while (r < n)
+    {
+        while (sum > k && l <= r)
+        {
+            sum -= arr[l];
+            l++;
+        }
+        if (sum == k)
+        {
+            maxLen = max(maxLen, r - l + 1);
+        }
+        r++;
+        if (r < n)
+            sum += arr[r];
+    }
+    return maxLen;
+}
+
 int main()
 {
 
@@ -64,7 +91,7 @@ int main()
     {
         cin >> arr[i];
     }
-    int num = longestSubArrHashMap(arr, n, k);
+    int num = longestSubArrOpt(arr, n, k);
     cout << num;
 
     return 0;
