@@ -46,32 +46,37 @@ void myMergeSort(int arr[], int l, int h)
     myMerge(arr, l, mid, h);
 }
 
-int quickPartition(int arr[], int p, int q)
+int quickPartition(int arr[], int l, int h)
 {
-    int j;
-    int i = p;
-    int pivot = arr[p];
-    for (j = p + 1; j < q; j++)
+    int pivot = arr[l];
+    int i = l;
+    int j = h;
+    while (i < j)
     {
-        if (arr[j] <= pivot)
+        while (arr[i] <= pivot && i < h - 1)
         {
             i++;
+        }
+        while (arr[j] >= pivot && j > l + 1)
+        {
+            j++;
+        }
+        if (i < j)
+        {
             swap(arr[i], arr[j]);
         }
     }
-    swap(arr[i], arr[p]);
-    return i;
+    swap(arr[j], arr[l]);
+    return j;
 }
 
-void quickSort(int arr[], int p, int q)
+void quickSort(int arr[], int l, int h)
 {
-    if (p == q)
-        return;
-    else
+    if (l < h)
     {
-        int mid = quickPartition(arr, p, q);
-        quickSort(arr, p, mid);
-        quickSort(arr, mid + 1, q);
+        int m = quickPartition(arr, l, h);
+        quickSort(arr, l, m - 1);
+        quickSort(arr, m + 1, h);
     }
 }
 
@@ -89,7 +94,7 @@ int main()
     {
         cin >> arr[i];
     }
-    quickSort(arr, l, n - 1);
+    quickSort(arr, l, n);
     for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";

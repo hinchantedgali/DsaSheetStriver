@@ -32,7 +32,7 @@ int seclargest(int arr[], int n)
 vector<int> secLargestOpt(int arr[], int n)
 {
     vector<int> res;
-    int seclargest = -1; // or take INT_MIN
+    int seclargest = INT_MIN; // or take INT_MIN
     int largest = arr[0];
 
     for (int i = 1; i < n; i++)

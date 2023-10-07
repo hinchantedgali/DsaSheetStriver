@@ -21,7 +21,6 @@ void leftRotateArrByKPlaces(int arr[], int n, int d)
         for (int i = 0; i < k; i++)
         {
             temp[i] = arr[i];
-            cout << temp[i] << " " << endl;
         }
 
         for (int i = k; i < n; i++)
@@ -32,6 +31,25 @@ void leftRotateArrByKPlaces(int arr[], int n, int d)
         {
             arr[i] = temp[i - (n - k)];
         }
+    }
+}
+
+void leftRotateArrByKPlacesOPt(int arr[], int n, int d)
+{
+    reverse(arr, arr + d);
+    reverse(arr + d, arr + n);
+    reverse(arr, arr + n);
+}
+
+void howToReverse(int arr[], int start, int end)
+{ // 2 PTRs approach
+    while (start <= end)
+    {
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        start++;
+        end--;
     }
 }
 
@@ -52,7 +70,7 @@ int main()
         cin >> arr[i];
     }
 
-    leftRotateArrByKPlaces(arr, n, k);
+    howToReverse(arr, 0, n);
     for (auto it : arr)
     {
         cout << it << " ";

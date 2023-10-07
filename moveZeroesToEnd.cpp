@@ -42,20 +42,20 @@ void moveZeroesToEndOPtDoosra(int arr[], int n)
 {
     int z = -1;
     // loop to find the first ZERO
-    for (int j = 0; j < n; j++)
+    for (int i = 0; i < n; i++)
     {
-        if (arr[j] == 0)
+        if (arr[i] == 0)
         {
-            z = j;
+            z = i;
             break;
         }
     }
 
-    for (int j = z + 1; j < n; j++)
+    for (int i = z + 1; i < n; i++)
     {
-        if (arr[j] != 0)
+        if (arr[i] != 0)
         { // means nonzero
-            swap(arr[z], arr[j]);
+            swap(arr[z], arr[i]);
             z++;
         }
     }
